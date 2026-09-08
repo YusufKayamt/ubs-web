@@ -2,7 +2,7 @@
   "name": "ubs-danismanlik-web",
   "version": "1.0.0",
   "private": true,
-  "description": "UBS Danışmanlık - Savunma Sanayii Test Danışmanlığı sitesi (Vercel + Neon + Vercel Blob)",
+  "description": "UBS Danışmanlık - Savunma Sanayii Test Danışmanlığı sitesi (Vercel + Supabase)",
   "engines": {
     "node": ">=18"
   },
@@ -10,7 +10,7 @@
     "dev": "node api/index.js"
   },
   "dependencies": {
-    "@vercel/blob": "^2.8.0",
+    "@supabase/supabase-js": "^2.45.4",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",

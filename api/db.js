@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 
-// Neon bağlantı dizesi: Neon Dashboard > Connection Details (pooled connection)
+// Supabase bağlantı dizesi: Supabase Dashboard > Connect > Transaction pooler
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false }
