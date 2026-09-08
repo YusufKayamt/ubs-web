@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UBS Danışmanlık | Savunma Sanayii Test Danışmanlığı</title>
+  <meta name="description" content="MIL-STD-810, MIL-STD-461 ve MIL-STD-1275 kapsamında çevresel ve elektromanyetik uyumluluk testleri için savunma sanayii, medikal ve endüstriyel ekipman üreticilerine mühendislik danışmanlığı.">
+  <meta name="keywords" content="savunma sanayii test danışmanlığı, MIL-STD-810, MIL-STD-461, MIL-STD-1275, EMC test, çevresel test, askeri standart testi">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="UBS Danışmanlık | Savunma Sanayii Test Danışmanlığı">
+  <meta property="og:description" content="MIL-STD-810, MIL-STD-461 ve MIL-STD-1275 kapsamında savunma sanayii, medikal ve endüstriyel ekipman üreticilerine test danışmanlığı.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Oswald:wght@500;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+    :root { --bg:#0A1628; --bg-alt:#0F2038; --line:#25385A; --fg:#E4EAF2; --accent:#1B6FC9; --accent-dark:#14528F; }
+    body { background-color: var(--bg); color: var(--fg); margin: 0; }
+    h1, h2, h3 { font-family: 'Oswald', sans-serif; }
+    p, a, span, div, li, button { font-family: 'IBM Plex Mono', monospace; }
+    html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3,
+    html[lang="ar"] p, html[lang="ar"] a, html[lang="ar"] span, html[lang="ar"] div, html[lang="ar"] li, html[lang="ar"] button {
+      font-family: 'Noto Naskh Arabic', 'IBM Plex Mono', sans-serif;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: var(--line); }
+    html { scroll-behavior: smooth; }
+    .skeleton { background: linear-gradient(90deg, #0F2038 25%, #16294a 37%, #0F2038 63%); background-size: 400% 100%; animation: skeleton-loading 1.4s ease infinite; }
+    @keyframes skeleton-loading { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.gorunur { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .fade-in { opacity: 1; transform: none; transition: none; } }
+    .dil-btn.aktif { color: #1B6FC9; font-weight: 600; }
+  </style>
+</head>
+<body class="selection:bg-[#1B6FC9] selection:text-white">
+
+  <!-- HEADER -->
+  <header id="topHeader" class="sticky top-0 z-40 bg-[#0A1628]/95 backdrop-blur border-b border-[#25385A]">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#top" class="flex flex-col leading-tight">
+        <span id="brandAdi" class="text-[#E4EAF2] text-xl uppercase tracking-wider" style="font-family:'Oswald',sans-serif;">UBS Danışmanlık</span>
+        <span id="brandSlogan" class="text-[10px] text-[#6F86AC] uppercase tracking-widest">Savunma Sanayii Test Danışmanlığı</span>
+      </a>
+
+      <nav id="desktopMenu" class="hidden md:flex items-center gap-6 text-sm uppercase text-[#E4EAF2]"></nav>
+
+      <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center gap-1 text-xs text-[#6F86AC]">
+          <button class="dil-btn px-2 py-1" data-dil="tr">TR</button>
+          <span>/</span>
+          <button class="dil-btn px-2 py-1" data-dil="en">EN</button>
+          <span>/</span>
+          <button class="dil-btn px-2 py-1" data-dil="ar">AR</button>
+        </div>
+        <a id="headerPhone" href="#" data-i18n="cta_iletisim" class="hidden md:inline-block bg-[#1B6FC9] text-white text-sm font-bold px-5 py-2.5 uppercase hover:bg-[#14528F] transition-colors">
+          Bize Ulaşın
+        </a>
+        <button id="menuToggle" class="md:hidden text-[#E4EAF2] p-2" aria-label="Menü">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBIL MENÜ -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-[#25385A] px-6 py-4 flex flex-col gap-4 text-sm uppercase">
+      <div id="mobileMenuLinks" class="flex flex-col gap-4"></div>
+      <div class="flex items-center gap-2 text-xs text-[#6F86AC]">
+        <button class="dil-btn px-2 py-1" data-dil="tr">TR</button>
+        <span>/</span>
+        <button class="dil-btn px-2 py-1" data-dil="en">EN</button>
+        <span>/</span>
+        <button class="dil-btn px-2 py-1" data-dil="ar">AR</button>
+      </div>
+      <a id="headerPhoneMobile" href="#" data-i18n="cta_iletisim" class="bg-[#1B6FC9] text-white text-center font-bold py-3">Bize Ulaşın</a>
+    </div>
+  </header>
+
+  <div id="top"></div>
+
+  <!-- HERO -->
+  <section class="relative border-b border-[#25385A] overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/gorseller/hero-tank.jpg" alt="NATO zırhlı araçları" class="w-full h-full object-cover opacity-50">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/85 to-[#0A1628]/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A1628]"></div>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
+      <p id="heroEtiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em] mb-4"></p>
+      <h1 id="heroBaslik" class="text-3xl md:text-5xl uppercase leading-tight max-w-3xl"></h1>
+      <p id="heroAciklama" class="mt-6 text-sm md:text-base text-[#E4EAF2]/80 max-w-xl leading-relaxed"></p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#hizmetler" data-i18n="cta_hizmetler" class="bg-[#1B6FC9] text-white font-bold px-8 py-4 uppercase text-sm hover:bg-[#14528F] transition-colors">Hizmetlerimiz</a>
+        <a id="heroPhone" href="#" data-i18n="cta_iletisim" class="border border-[#25385A] text-[#E4EAF2] font-bold px-8 py-4 uppercase text-sm hover:border-[#1B6FC9] hover:text-[#1B6FC9] transition-colors">Bize Ulaşın</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HİZMETLER -->
+  <section id="hizmetler" class="max-w-6xl mx-auto px-6 py-20 md:py-28 scroll-mt-20 fade-in">
+    <div class="mb-12">
+      <span data-i18n="hizmetler_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">Hizmetlerimiz</span>
+      <h2 data-i18n="hizmetler_baslik" class="text-3xl md:text-4xl uppercase mt-2">Standart Kapsamında Test Danışmanlığı</h2>
+    </div>
+    <div id="hizmetlerGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </section>
+
+  <!-- SÜREÇ -->
+  <section class="border-y border-[#25385A] bg-[#0F2038] fade-in">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="mb-14">
+        <span data-i18n="surec_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">Nasıl Çalışıyoruz</span>
+        <h2 data-i18n="surec_baslik" class="text-3xl md:text-4xl uppercase mt-2">Talepten Rapora Süreç</h2>
+      </div>
+      <div class="relative">
+        <div class="hidden lg:block absolute left-0 right-0 top-6 h-px bg-[#25385A]"></div>
+        <div id="surecGrid" class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GÖRSEL ŞERİT -->
+  <section class="border-y border-[#25385A] bg-[#0F2038] fade-in">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="mb-12">
+        <span data-i18n="ortam_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">Sahadan ve Laboratuvardan</span>
+        <h2 data-i18n="ortam_baslik" class="text-3xl md:text-4xl uppercase mt-2">Test Ettiğimiz ve Hizmet Verdiğimiz Alan</h2>
+      </div>
+      <div id="ortamGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      <p data-i18n="ortam_not" class="text-[10px] text-[#6F86AC] mt-6">Görseller Wikimedia Commons üzerinden kamu malı / CC BY-SA lisanslı kaynaklardan alınmıştır. Detaylar için bir görsele tıklayın.</p>
+    </div>
+  </section>
+
+  <!-- GÖRSEL DETAY PANELİ -->
+  <div id="detayPanel" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div id="detayOverlay" class="absolute inset-0 bg-[#0A1628]/90"></div>
+    <div class="relative bg-[#0F2038] border border-[#25385A] max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <button id="detayKapat" class="absolute top-3 right-3 text-[#E4EAF2] hover:text-[#1B6FC9] p-2" aria-label="Kapat">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <img id="detayGorsel" src="" alt="" class="w-full h-56 md:h-72 object-cover">
+      <div class="p-6 md:p-8">
+        <span data-i18n="detay_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">Detay</span>
+        <h3 id="detayBaslik" class="text-2xl uppercase mt-2 mb-4"></h3>
+        <p id="detayAciklama" class="text-sm text-[#E4EAF2]/80 leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HAKKIMIZDA -->
+  <section id="hakkimizda" class="scroll-mt-20 fade-in">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid grid-cols-1 md:grid-cols-2 gap-14 items-start">
+      <div>
+        <span data-i18n="hakkimizda_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">Hakkımızda</span>
+        <h2 id="hakkimizdaBaslik" class="text-3xl md:text-4xl uppercase mt-2 mb-6"></h2>
+        <p id="hakkimizdaAciklama" class="text-sm md:text-base text-[#E4EAF2]/80 leading-relaxed"></p>
+        <div id="deneyimRozeti" class="hidden mt-8 inline-flex items-baseline gap-3 border-l-2 border-[#1B6FC9] pl-4">
+          <span id="deneyimSayi" class="text-4xl md:text-5xl text-[#1B6FC9]" style="font-family:'Oswald',sans-serif;"></span>
+          <span data-i18n="deneyim_metin" class="text-xs uppercase text-[#6F86AC] tracking-wider max-w-[8rem]">Yıllık Sektör Deneyimi</span>
+        </div>
+      </div>
+      <div id="degerlerGrid" class="grid grid-cols-2 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- REFERANSLAR -->
+  <section id="referanslar" class="border-t border-[#25385A] bg-[#0F2038] scroll-mt-20 fade-in">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="mb-12">
+        <span data-i18n="referans_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">Referanslar</span>
+        <h2 data-i18n="referans_baslik" class="text-3xl md:text-4xl uppercase mt-2">Birlikte Çalıştığımız Projeler</h2>
+      </div>
+      <div id="referanslarGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- ÖZEL BÖLÜMLER (admin panelden serbestçe eklenir) -->
+  <div id="ozelBolumlerAlani"></div>
+
+  <!-- İLETİŞİM -->
+  <section id="iletisim" class="border-t border-[#25385A] scroll-mt-20 fade-in">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="mb-12">
+        <span data-i18n="iletisim_etiket" class="text-[#1B6FC9] text-xs uppercase tracking-[0.3em]">İletişim</span>
+        <h2 data-i18n="iletisim_baslik" class="text-3xl md:text-4xl uppercase mt-2">Bize Ulaşın</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div id="contactInfo" class="space-y-6 md:col-span-1"></div>
+        <div class="md:col-span-2 border border-[#25385A] p-6 md:p-8 bg-[#0F2038]">
+          <form id="contactForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label data-i18n="form_ad" class="block text-xs text-[#6F86AC] uppercase mb-1">Ad Soyad *</label>
+                <input type="text" id="cf_ad" required maxlength="150" class="w-full p-3 text-sm bg-[#0A1628] border border-[#25385A] text-[#E4EAF2] focus:outline-none focus:border-[#1B6FC9]">
+              </div>
+              <div>
+                <label data-i18n="form_firma" class="block text-xs text-[#6F86AC] uppercase mb-1">Firma</label>
+                <input type="text" id="cf_firma" maxlength="150" class="w-full p-3 text-sm bg-[#0A1628] border border-[#25385A] text-[#E4EAF2] focus:outline-none focus:border-[#1B6FC9]">
+              </div>
+            </div>
+            <div>
+              <label data-i18n="form_eposta" class="block text-xs text-[#6F86AC] uppercase mb-1">E-posta *</label>
+              <input type="email" id="cf_eposta" required maxlength="200" class="w-full p-3 text-sm bg-[#0A1628] border border-[#25385A] text-[#E4EAF2] focus:outline-none focus:border-[#1B6FC9]">
+            </div>
+            <div>
+              <label data-i18n="form_mesaj" class="block text-xs text-[#6F86AC] uppercase mb-1">Mesajınız *</label>
+              <textarea id="cf_mesaj" rows="4" required maxlength="2000" class="w-full p-3 text-sm bg-[#0A1628] border border-[#25385A] text-[#E4EAF2] focus:outline-none focus:border-[#1B6FC9]"></textarea>
+            </div>
+            <button type="submit" data-i18n="form_gonder" class="bg-[#1B6FC9] text-white font-bold px-8 py-3 uppercase text-sm hover:bg-[#14528F] transition-colors">Gönder</button>
+            <p id="contactFormStatus" class="text-xs mt-2"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[#25385A]">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-[#6F86AC]">
+      <span>&copy; <span id="footerYear"></span> <span id="footerBrand">UBS Danışmanlık &mdash; Savunma Sanayii Test Danışmanlığı</span></span>
+      <a href="admin.html" data-i18n="yonetim_paneli" class="hover:text-[#1B6FC9] transition-colors">Yönetim Paneli</a>
+    </div>
+  </footer>
+
+  <script>
+    const API_BASE = '';
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // --- GÜVENLİ RENDER YARDIMCILARI (XSS koruması) ---
+    function esc(deger) {
+      return String(deger ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+    function guvenliHref(deger) {
+      const s = String(deger ?? '').trim();
+      if (/^(#[\w-]*|\/[\w\-./?=&%#]*|https?:\/\/[^\s"'<>]+|tel:[\d+() -]+|mailto:[^\s"'<>]+)$/i.test(s)) return esc(s);
+      return '#';
+    }
+
+    // --- ÇOK DİLLİLİK ---
+    const SOZLUK = {
+      tr: {
+        cta_iletisim: 'Bize Ulaşın', cta_hizmetler: 'Hizmetlerimiz',
+        hizmetler_etiket: 'Hizmetlerimiz', hizmetler_baslik: 'Standart Kapsamında Test Danışmanlığı',
+        surec_etiket: 'Nasıl Çalışıyoruz', surec_baslik: 'Talepten Rapora Süreç',
+        ortam_etiket: 'Sahadan ve Laboratuvardan', ortam_baslik: 'Test Ettiğimiz ve Hizmet Verdiğimiz Alan',
+        ortam_not: 'Görseller Wikimedia Commons üzerinden kamu malı / CC BY-SA lisanslı kaynaklardan alınmıştır. Detaylar için bir görsele tıklayın.',
+        detay_etiket: 'Detay',
+        hakkimizda_etiket: 'Hakkımızda', deneyim_metin: 'Yıllık Sektör Deneyimi',
+        referans_etiket: 'Referanslar', referans_baslik: 'Birlikte Çalıştığımız Projeler',
+        iletisim_etiket: 'İletişim', iletisim_baslik: 'Bize Ulaşın',
+        form_ad: 'Ad Soyad *', form_firma: 'Firma', form_eposta: 'E-posta *', form_mesaj: 'Mesajınız *', form_gonder: 'Gönder',
+        yonetim_paneli: 'Yönetim Paneli',
+        etiket_telefon: 'Telefon', etiket_telefon2: 'Telefon 2', etiket_whatsapp: 'WhatsApp', etiket_adres: 'Adres', etiket_saat: 'Çalışma Saatleri',
+        bos_hizmet: 'Henüz hizmet eklenmemiş.', hata_hizmet: 'Hizmetler yüklenemedi. Sunucu çalışmıyor olabilir.',
+        bos_iletisim: 'İletişim bilgisi eklenmemiş.', hata_iletisim: 'İletişim bilgileri yüklenemedi.',
+        bos_referans: '', varsayilan_hizmet_aciklama: 'Detaylı bilgi ve teklif için bizimle iletişime geçin.'
+      },
+      en: {
+        cta_iletisim: 'Contact Us', cta_hizmetler: 'Our Services',
+        hizmetler_etiket: 'Our Services', hizmetler_baslik: 'Test Consultancy Under Standards',
+        surec_etiket: 'How We Work', surec_baslik: 'From Request to Report',
+        ortam_etiket: 'From the Field and the Lab', ortam_baslik: 'Areas We Test and Serve',
+        ortam_not: 'Images are sourced from Wikimedia Commons under public domain / CC BY-SA licenses. Click an image for details.',
+        detay_etiket: 'Detail',
+        hakkimizda_etiket: 'About Us', deneyim_metin: 'Years of Industry Experience',
+        referans_etiket: 'References', referans_baslik: 'Projects We Have Worked On',
+        iletisim_etiket: 'Contact', iletisim_baslik: 'Get in Touch',
+        form_ad: 'Full Name *', form_firma: 'Company', form_eposta: 'Email *', form_mesaj: 'Your Message *', form_gonder: 'Send',
+        yonetim_paneli: 'Admin Panel',
+        etiket_telefon: 'Phone', etiket_telefon2: 'Phone 2', etiket_whatsapp: 'WhatsApp', etiket_adres: 'Address', etiket_saat: 'Working Hours',
+        bos_hizmet: 'No services added yet.', hata_hizmet: 'Services could not be loaded. The server may be down.',
+        bos_iletisim: 'No contact information added yet.', hata_iletisim: 'Contact information could not be loaded.',
+        bos_referans: '', varsayilan_hizmet_aciklama: 'Contact us for detailed information and a quote.'
+      },
+      ar: {
+        cta_iletisim: 'اتصل بنا', cta_hizmetler: 'خدماتنا',
+        hizmetler_etiket: 'خدماتنا', hizmetler_baslik: 'استشارات الاختبار وفق المعايير',
+        surec_etiket: 'كيف نعمل', surec_baslik: 'من الطلب إلى التقرير',
+        ortam_etiket: 'من الميدان والمختبر', ortam_baslik: 'المجالات التي نختبرها ونخدمها',
+        ortam_not: 'الصور مأخوذة من ويكيميديا كومنز بموجب تراخيص الملكية العامة أو CC BY-SA. انقر على صورة لمزيد من التفاصيل.',
+        detay_etiket: 'التفاصيل',
+        hakkimizda_etiket: 'من نحن', deneyim_metin: 'سنوات الخبرة في القطاع',
+        referans_etiket: 'المراجع', referans_baslik: 'المشاريع التي عملنا عليها',
+        iletisim_etiket: 'اتصل بنا', iletisim_baslik: 'تواصل معنا',
+        form_ad: 'الاسم الكامل *', form_firma: 'الشركة', form_eposta: 'البريد الإلكتروني *', form_mesaj: 'رسالتك *', form_gonder: 'إرسال',
+        yonetim_paneli: 'لوحة الإدارة',
+        etiket_telefon: 'الهاتف', etiket_telefon2: 'الهاتف 2', etiket_whatsapp: 'واتساب', etiket_adres: 'العنوان', etiket_saat: 'ساعات العمل',
+        bos_hizmet: 'لم تتم إضافة خدمات بعد.', hata_hizmet: 'تعذر تحميل الخدمات. قد يكون الخادم متوقفًا.',
+        bos_iletisim: 'لم تتم إضافة معلومات الاتصال بعد.', hata_iletisim: 'تعذر تحميل معلومات الاتصال.',
+        bos_referans: '', varsayilan_hizmet_aciklama: 'تواصلوا معنا للحصول على معلومات تفصيلية وعرض سعر.'
+      }
+    };
+
+    function mevcutDil() {
+      return localStorage.getItem('dil') || 'tr';
+    }
+    // obj[taban_dil] doluysa onu, yoksa obj[taban] (Türkçe) döner
+    function alan(obj, taban) {
+      const dil = mevcutDil();
+      if (dil === 'tr') return obj[taban] || '';
+      return obj[`${taban}_${dil}`] || obj[taban] || '';
+    }
+    function metin(anahtar) {
+      const dil = mevcutDil();
+      return (SOZLUK[dil] && SOZLUK[dil][anahtar]) || SOZLUK.tr[anahtar] || '';
+    }
+    function statikMetinleriUygula() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const val = metin(el.dataset.i18n);
+        if (val) el.textContent = val;
+      });
+    }
+    function dilUygula(dil, yenidenYukle) {
+      localStorage.setItem('dil', dil);
+      document.documentElement.lang = dil;
+      document.documentElement.dir = dil === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('.dil-btn').forEach(b => b.classList.toggle('aktif', b.dataset.dil === dil));
+      statikMetinleriUygula();
+      if (yenidenYukle) {
+        menuGetir(); hizmetleriGetir(); surecGetir(); ortamGetir(); degerleriGetir(); referanslarGetir(); ozelBolumleriGetir(); ayarlariGetir();
+      }
+    }
+    document.querySelectorAll('.dil-btn').forEach(btn => {
+      btn.addEventListener('click', () => dilUygula(btn.dataset.dil, true));
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+    document.getElementById('mobileMenu').addEventListener('click', (e) => {
+      if (e.target.closest('a')) document.getElementById('mobileMenu').classList.add('hidden');
+    });
+
+    // --- ÜST MENÜ ---
+    async function menuGetir() {
+      const desktopNav = document.getElementById('desktopMenu');
+      const mobileNav = document.getElementById('mobileMenuLinks');
+      try {
+        const res = await fetch(`${API_BASE}/api/menu`);
+        const ogeler = await res.json();
+        desktopNav.innerHTML = ogeler.map(o => `<a href="${guvenliHref(o.Hedef)}" class="hover:text-[#1B6FC9] transition-colors">${esc(alan(o, 'Baslik'))}</a>`).join('');
+        mobileNav.innerHTML = ogeler.map(o => `<a href="${guvenliHref(o.Hedef)}" class="hover:text-[#1B6FC9]">${esc(alan(o, 'Baslik'))}</a>`).join('');
+      } catch (err) {
+        // sessizce geç
+      }
+    }
+
+    // --- HİZMETLER ---
+    const HIZMET_ICONS = [
+      'M14 4v10.26a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z', // termometre (iklimlendirme)
+      'M5 13a8 8 0 0 1 14 0M8 16a4 4 0 0 1 8 0M12 20v-6', // sinyal (EMC)
+      'M13 2 3 14h7l-1 8 10-12h-7l1-8z', // yıldırım (elektrik/1275)
+      'M12 6v12M6 12h12', // artı (medikal)
+      'M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z', // dişli (endüstriyel)
+    ];
+    function hizmetIkon(i) {
+      const d = HIZMET_ICONS[i % HIZMET_ICONS.length];
+      return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B6FC9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+    }
+
+    async function hizmetleriGetir() {
+      const grid = document.getElementById('hizmetlerGrid');
+      grid.innerHTML = Array.from({ length: 5 }).map(() => '<div class="skeleton h-40 border border-[#25385A]"></div>').join('');
+      try {
+        const res = await fetch(`${API_BASE}/api/services`);
+        const hizmetler = await res.json();
+        if (!Array.isArray(hizmetler) || hizmetler.length === 0) {
+          grid.innerHTML = `<p class="text-[#6F86AC] text-sm">${esc(metin('bos_hizmet'))}</p>`;
+          return;
+        }
+        grid.innerHTML = hizmetler.map((h, i) => {
+          const baslik = esc(alan(h, 'HizmetAdi'));
+          const aciklama = esc(alan(h, 'Aciklama')) || esc(metin('varsayilan_hizmet_aciklama'));
+          return `
+          <div class="group relative border border-[#25385A] overflow-hidden hover:border-[#1B6FC9] transition-colors bg-[#0A1628] h-64" tabindex="0">
+            ${h.ResimYolu ? `<div class="h-36 overflow-hidden"><img src="${esc(h.ResimYolu)}" alt="${baslik}" class="w-full h-full object-cover"></div>` : ''}
+            <div class="p-6">
+              ${h.ResimYolu ? '' : hizmetIkon(i)}
+              <h3 class="text-base uppercase ${h.ResimYolu ? '' : 'mt-4'} mb-2 text-[#E4EAF2]">${baslik}</h3>
+              <p class="text-xs text-[#6F86AC] leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${aciklama}</p>
+            </div>
+            <div class="absolute inset-0 bg-[#0F2038] p-6 flex flex-col justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 border border-[#1B6FC9]">
+              <span class="text-[#1B6FC9] text-[10px] uppercase tracking-[0.25em] mb-2">${baslik}</span>
+              <p class="text-xs text-[#E4EAF2] leading-relaxed">${aciklama}</p>
+            </div>
+          </div>
+        `;
+        }).join('');
+      } catch (err) {
+        grid.innerHTML = `<p class="text-red-400 text-sm">${esc(metin('hata_hizmet'))}</p>`;
+      }
+    }
+
+    // --- HAKKIMIZDA DEĞERLERİ ---
+    async function degerleriGetir() {
+      const grid = document.getElementById('degerlerGrid');
+      try {
+        const res = await fetch(`${API_BASE}/api/degerler`);
+        const degerler = await res.json();
+        if (!Array.isArray(degerler) || degerler.length === 0) {
+          grid.innerHTML = '';
+          return;
+        }
+        grid.innerHTML = degerler.map(d => `
+          <div class="border border-[#25385A] p-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B6FC9" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <h3 class="text-sm uppercase mt-3 mb-1">${esc(alan(d, 'Baslik'))}</h3>
+            <p class="text-xs text-[#6F86AC]">${esc(alan(d, 'Aciklama'))}</p>
+          </div>
+        `).join('');
+      } catch (err) {
+        grid.innerHTML = '';
+      }
+    }
+
+    // --- ÇALIŞMA SÜRECİ ---
+    async function surecGetir() {
+      const grid = document.getElementById('surecGrid');
+      try {
+        const res = await fetch(`${API_BASE}/api/surec`);
+        const adimlar = await res.json();
+        if (!Array.isArray(adimlar) || adimlar.length === 0) {
+          grid.innerHTML = '';
+          return;
+        }
+        grid.innerHTML = adimlar.map((s, i) => `
+          <div class="relative border border-[#25385A] bg-[#0A1628] p-5 h-full">
+            <div class="w-12 h-12 rounded-full bg-[#1B6FC9] text-white flex items-center justify-center text-sm font-bold" style="font-family:'Oswald',sans-serif;">${String(i + 1).padStart(2, '0')}</div>
+            <h3 class="text-sm uppercase mt-4 mb-2 text-[#E4EAF2]">${esc(alan(s, 'Baslik'))}</h3>
+            <p class="text-xs text-[#6F86AC] leading-relaxed">${esc(alan(s, 'Aciklama'))}</p>
+            ${i < adimlar.length - 1 ? `<div class="hidden lg:flex absolute top-4 -right-[27px] w-6 h-6 items-center justify-center text-[#1B6FC9] bg-[#0F2038]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>` : ''}
+          </div>
+        `).join('');
+      } catch (err) {
+        grid.innerHTML = '';
+      }
+    }
+
+    // --- REFERANSLAR ---
+    async function referanslarGetir() {
+      const bolum = document.getElementById('referanslar');
+      const grid = document.getElementById('referanslarGrid');
+      try {
+        const res = await fetch(`${API_BASE}/api/referanslar`);
+        const referanslar = await res.json();
+        if (!Array.isArray(referanslar) || referanslar.length === 0) {
+          grid.innerHTML = '';
+          bolum.classList.add('hidden');
+          return;
+        }
+        bolum.classList.remove('hidden');
+        grid.innerHTML = referanslar.map(r => `
+          <div class="border border-[#25385A] overflow-hidden bg-[#0A1628]">
+            ${r.ResimYolu ? `<div class="h-44 overflow-hidden"><img src="${esc(r.ResimYolu)}" alt="${esc(alan(r, 'Baslik'))}" class="w-full h-full object-cover"></div>` : ''}
+            <div class="p-5">
+              <h3 class="text-sm uppercase mb-2 text-[#E4EAF2]">${esc(alan(r, 'Baslik'))}</h3>
+              <p class="text-xs text-[#6F86AC] leading-relaxed">${esc(alan(r, 'Aciklama'))}</p>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        grid.innerHTML = '';
+      }
+    }
+
+    // --- ÖZEL BÖLÜMLER (admin panelden eklenen serbest bölümler) ---
+    async function ozelBolumleriGetir() {
+      const alan_ = document.getElementById('ozelBolumlerAlani');
+      try {
+        const res = await fetch(`${API_BASE}/api/ozel-bolumler`);
+        const bolumler = await res.json();
+        if (!Array.isArray(bolumler) || bolumler.length === 0) {
+          alan_.innerHTML = '';
+          return;
+        }
+        alan_.innerHTML = bolumler.map(b => `
+          <section id="${esc(b.Slug)}" class="border-t border-[#25385A] scroll-mt-20 fade-in">
+            <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid grid-cols-1 ${b.ResimYolu ? 'md:grid-cols-2' : ''} gap-14 items-center">
+              <div>
+                <h2 class="text-3xl md:text-4xl uppercase mb-6">${esc(alan(b, 'Baslik'))}</h2>
+                <p class="text-sm md:text-base text-[#E4EAF2]/80 leading-relaxed whitespace-pre-line">${esc(alan(b, 'Aciklama'))}</p>
+              </div>
+              ${b.ResimYolu ? `<div class="border border-[#25385A] overflow-hidden"><img src="${esc(b.ResimYolu)}" alt="${esc(alan(b, 'Baslik'))}" class="w-full h-full object-cover"></div>` : ''}
+            </div>
+          </section>
+        `).join('');
+        alan_.querySelectorAll('.fade-in').forEach(el => gozlemci.observe(el));
+      } catch (err) {
+        alan_.innerHTML = '';
+      }
+    }
+
+    // --- GÖRSEL ŞERİT (sabit içerik, çok dilli) ---
+    const ORTAM_KARTLARI = [
+      { gorsel: '/gorseller/jet-f35.jpg', alt: { tr: 'Savaş uçağı bakımı', en: 'Fighter jet maintenance', ar: 'صيانة طائرة مقاتلة' },
+        baslik: { tr: 'Hava Platformları', en: 'Air Platforms', ar: 'المنصات الجوية' },
+        aciklama: { tr: 'Hava platformlarında kullanılan aviyonik ve elektronik ekipmanlar, MIL-STD-810 ve MIL-STD-461 kapsamında sıcaklık, titreşim ve elektromanyetik uyumluluk testlerinden geçirilir. Danışmanlığımız, bu kritik sistemlerin saha koşullarına dayanıklılığını test öncesinde ve süreç boyunca güvence altına alır.',
+          en: 'Avionics and electronic equipment used in air platforms undergo temperature, vibration and electromagnetic compatibility testing under MIL-STD-810 and MIL-STD-461. Our consultancy secures the field durability of these critical systems before and throughout the test process.',
+          ar: 'تخضع المعدات الإلكترونية والملاحية المستخدمة في المنصات الجوية لاختبارات درجة الحرارة والاهتزاز والتوافق الكهرومغناطيسي وفق MIL-STD-810 وMIL-STD-461. تضمن استشاراتنا متانة هذه الأنظمة الحيوية في ظروف الميدان قبل الاختبار وأثناءه.' } },
+      { gorsel: '/gorseller/emc-chamber.jpg', alt: { tr: 'EMC anekoik test odası', en: 'EMC anechoic test chamber', ar: 'غرفة اختبار كهرومغناطيسي' },
+        baslik: { tr: 'EMC / Anekoik Test Odası', en: 'EMC / Anechoic Chamber', ar: 'غرفة EMC / الصدى الصوتي' },
+        aciklama: { tr: 'MIL-STD-461 kapsamındaki CE101, CE102, CS114, CS115, CS116, RE102 ve RS103 test metotları, elektromanyetik girişim ve yayılımın anekoik test odalarında ölçülmesini gerektirir. Test tasarımından rapor hazırlığına kadar süreci sizin adınıza yönetiyoruz.',
+          en: 'The CE101, CE102, CS114, CS115, CS116, RE102 and RS103 test methods under MIL-STD-461 require measuring electromagnetic interference and emissions in anechoic chambers. We manage the process on your behalf, from test design to report preparation.',
+          ar: 'تتطلب طرق الاختبار CE101 وCE102 وCS114 وCS115 وCS116 وRE102 وRS103 ضمن MIL-STD-461 قياس التداخل والانبعاث الكهرومغناطيسي في غرف الصدى. ندير العملية نيابة عنكم من تصميم الاختبار حتى إعداد التقرير.' } },
+      { gorsel: '/gorseller/climatic-test.jpg', alt: { tr: 'İklimlendirme testi', en: 'Climatic testing', ar: 'اختبار مناخي' },
+        baslik: { tr: 'İklimlendirme Test Laboratuvarı', en: 'Climatic Test Laboratory', ar: 'مختبر الاختبار المناخي' },
+        aciklama: { tr: 'MIL-STD-810 kapsamında iklimlendirme testleri; aşırı sıcak, soğuk, nem ve buzlanma koşullarının simüle edildiği laboratuvarlarda gerçekleştirilir. Ekipmanınızın bu koşullara dayanıklılığını test öncesi danışmanlıkla güvence altına alıyoruz.',
+          en: "Climatic tests under MIL-STD-810 are performed in laboratories simulating extreme heat, cold, humidity and icing conditions. We secure your equipment's resistance to these conditions through pre-test consultancy.",
+          ar: 'تُجرى الاختبارات المناخية وفق MIL-STD-810 في مختبرات تحاكي ظروف الحرارة الشديدة والبرودة والرطوبة والتجمد. نضمن مقاومة معداتكم لهذه الظروف من خلال الاستشارة قبل الاختبار.' } },
+      { gorsel: '/gorseller/rifle-soldier.jpg', alt: { tr: 'NATO tatbikatı', en: 'NATO exercise', ar: 'تمرين الناتو' },
+        baslik: { tr: 'Saha Ekipmanları', en: 'Field Equipment', ar: 'معدات الميدان' },
+        aciklama: { tr: 'Saha koşullarında kullanılan taşınabilir ekipman ve sistemler; toz, darbe, nem ve mekanik zorlanmalara karşı MIL-STD-810 kapsamında test edilir. Ürününüzün saha güvenilirliğini artıracak test planlaması sunuyoruz.',
+          en: "Portable equipment and systems used in the field are tested against dust, shock, humidity and mechanical stress under MIL-STD-810. We offer test planning to increase your product's field reliability.",
+          ar: 'يتم اختبار المعدات والأنظمة المحمولة المستخدمة في الميدان ضد الغبار والصدمات والرطوبة والإجهاد الميكانيكي وفق MIL-STD-810. نقدم تخطيط الاختبار لزيادة موثوقية منتجكم في الميدان.' } },
+      { gorsel: '/gorseller/vibration-test.jpg', alt: { tr: 'Titreşim testi', en: 'Vibration testing', ar: 'اختبار الاهتزاز' },
+        baslik: { tr: 'Titreşim / Mekanik Test', en: 'Vibration / Mechanical Test', ar: 'اختبار الاهتزاز / الميكانيكي' },
+        aciklama: { tr: 'Araç ve platformlarda kullanılan ekipmanların taşıma ve operasyon sırasında maruz kaldığı titreşim ve mekanik zorlanmalar, MIL-STD-810 titreşim ve mekanik test metotlarıyla değerlendirilir.',
+          en: 'Vibration and mechanical stresses that equipment used in vehicles and platforms is exposed to during transport and operation are evaluated using MIL-STD-810 vibration and mechanical test methods.',
+          ar: 'يتم تقييم الاهتزاز والإجهاد الميكانيكي الذي تتعرض له المعدات المستخدمة في المركبات والمنصات أثناء النقل والتشغيل باستخدام طرق اختبار الاهتزاز والميكانيكا ضمن MIL-STD-810.' } },
+      { gorsel: '/gorseller/salt-spray.jpg', alt: { tr: 'Tuz sisi testi', en: 'Salt fog testing', ar: 'اختبار رذاذ الملح' },
+        baslik: { tr: 'Tuz Sisi / Korozyon Testi', en: 'Salt Fog / Corrosion Test', ar: 'اختبار رذاذ الملح / التآكل' },
+        aciklama: { tr: 'Deniz ve kıyı ortamlarında görev yapan ekipmanların korozyon dayanımı, MIL-STD-810 tuz sisi testi ile doğrulanır. Malzeme ve kaplama seçiminden test sürecine kadar danışmanlık veriyoruz.',
+          en: 'The corrosion resistance of equipment operating in marine and coastal environments is verified through MIL-STD-810 salt fog testing. We provide consultancy from material and coating selection to the test process.',
+          ar: 'يتم التحقق من مقاومة التآكل للمعدات العاملة في البيئات البحرية والساحلية من خلال اختبار رذاذ الملح وفق MIL-STD-810. نقدم استشارات من اختيار المواد والطلاء حتى عملية الاختبار.' } }
+    ];
+
+    function ortamGetir() {
+      const dil = mevcutDil();
+      const grid = document.getElementById('ortamGrid');
+      grid.innerHTML = ORTAM_KARTLARI.map(k => `
+        <figure class="detay-kart relative border border-[#25385A] overflow-hidden group h-64 cursor-pointer" tabindex="0" role="button"
+          data-gorsel="${k.gorsel}" data-baslik="${esc(k.baslik[dil] || k.baslik.tr)}" data-aciklama="${esc(k.aciklama[dil] || k.aciklama.tr)}">
+          <img src="${k.gorsel}" alt="${esc(k.alt[dil] || k.alt.tr)}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-500">
+          <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A1628] to-transparent p-4 text-xs uppercase tracking-wider">${esc(k.baslik[dil] || k.baslik.tr)}</figcaption>
+        </figure>
+      `).join('');
+
+      grid.querySelectorAll('.detay-kart').forEach(kart => {
+        kart.addEventListener('click', () => detayAc(kart));
+        kart.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); detayAc(kart); }
+        });
+      });
+    }
+
+    // --- İLETİŞİM FORMU ---
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('contactFormStatus');
+      const govde = {
+        ad: document.getElementById('cf_ad').value,
+        firma: document.getElementById('cf_firma').value,
+        eposta: document.getElementById('cf_eposta').value,
+        mesaj: document.getElementById('cf_mesaj').value
+      };
+      try {
+        const res = await fetch(`${API_BASE}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(govde)
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) document.getElementById('contactForm').reset();
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- SİTE AYARLARI ---
+    async function ayarlariGetir() {
+      const infoBox = document.getElementById('contactInfo');
+      try {
+        const res = await fetch(`${API_BASE}/api/settings`);
+        const a = await res.json();
+
+        if (a.site_adi) {
+          document.getElementById('brandAdi').textContent = a.site_adi;
+          const slogan = alan(a, 'site_slogan');
+          document.getElementById('footerBrand').textContent = `${a.site_adi}${slogan ? ' — ' + slogan : ''}`;
+          document.title = slogan ? `${a.site_adi} | ${slogan}` : a.site_adi;
+        }
+        document.getElementById('brandSlogan').textContent = alan(a, 'site_slogan');
+
+        document.getElementById('heroEtiket').textContent = alan(a, 'hero_etiket');
+        document.getElementById('heroBaslik').textContent = alan(a, 'hero_baslik');
+        document.getElementById('heroAciklama').textContent = alan(a, 'hero_aciklama');
+        document.getElementById('hakkimizdaBaslik').textContent = alan(a, 'hakkimizda_baslik');
+        document.getElementById('hakkimizdaAciklama').textContent = alan(a, 'hakkimizda_aciklama');
+        if (a.deneyim_yili) {
+          document.getElementById('deneyimSayi').textContent = `${a.deneyim_yili}+`;
+          document.getElementById('deneyimRozeti').classList.remove('hidden');
+        }
+
+        const telHref = a.telefon1 ? `tel:${a.telefon1.replace(/\s+/g, '')}` : '#';
+        document.getElementById('headerPhone').href = telHref;
+        document.getElementById('headerPhoneMobile').href = telHref;
+        document.getElementById('heroPhone').href = telHref;
+
+        const satirlar = [];
+        if (a.telefon1) satirlar.push([metin('etiket_telefon'), a.telefon1, telHref]);
+        if (a.telefon2) satirlar.push([metin('etiket_telefon2'), a.telefon2, `tel:${a.telefon2.replace(/\s+/g, '')}`]);
+        if (a.whatsapp) satirlar.push([metin('etiket_whatsapp'), a.whatsapp, `https://wa.me/${a.whatsapp.replace(/\D/g, '')}`]);
+        if (a.adres) satirlar.push([metin('etiket_adres'), a.adres, null]);
+        if (a.calisma_saatleri) satirlar.push([metin('etiket_saat'), a.calisma_saatleri, null]);
+
+        infoBox.innerHTML = satirlar.map(([baslik, deger, link]) => `
+          <div class="border-l-2 border-[#1B6FC9] pl-4">
+            <span class="block text-[#1B6FC9] text-xs uppercase mb-1">${esc(baslik)}</span>
+            ${link ? `<a href="${guvenliHref(link)}" class="text-sm text-[#E4EAF2] hover:text-[#1B6FC9] transition-colors">${esc(deger)}</a>` : `<p class="text-sm text-[#E4EAF2]">${esc(deger)}</p>`}
+          </div>
+        `).join('') || `<p class="text-[#6F86AC] text-sm">${esc(metin('bos_iletisim'))}</p>`;
+
+        yapilandirilmisVeriEkle(a);
+      } catch (err) {
+        infoBox.innerHTML = `<p class="text-red-400 text-sm">${esc(metin('hata_iletisim'))}</p>`;
+      }
+    }
+
+    // --- GOOGLE İÇİN YAPILANDIRILMIŞ VERİ (JSON-LD) ---
+    function yapilandirilmisVeriEkle(a) {
+      const veri = {
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        name: a.site_adi || 'UBS Danışmanlık',
+        image: `${location.origin}/favicon.svg`,
+        url: location.origin + '/',
+        telephone: a.telefon1 || undefined,
+        areaServed: 'TR',
+        description: 'MIL-STD-810, MIL-STD-461 ve MIL-STD-1275 kapsamında savunma sanayii test danışmanlığı.'
+      };
+      document.querySelectorAll('script[type="application/ld+json"]').forEach(s => s.remove());
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(veri);
+      document.head.appendChild(script);
+    }
+
+    // --- GÖRSEL DETAY PANELİ ---
+    const detayPanel = document.getElementById('detayPanel');
+    const detayGorsel = document.getElementById('detayGorsel');
+    const detayBaslik = document.getElementById('detayBaslik');
+    const detayAciklama = document.getElementById('detayAciklama');
+
+    function detayAc(kart) {
+      detayGorsel.src = kart.dataset.gorsel;
+      detayGorsel.alt = kart.dataset.baslik;
+      detayBaslik.textContent = kart.dataset.baslik;
+      detayAciklama.textContent = kart.dataset.aciklama;
+      detayPanel.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function detayKapat() {
+      detayPanel.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('detayKapat').addEventListener('click', detayKapat);
+    document.getElementById('detayOverlay').addEventListener('click', detayKapat);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !detayPanel.classList.contains('hidden')) detayKapat();
+    });
+
+    // --- KAYDIRMA ANİMASYONU ---
+    const gozlemci = new IntersectionObserver((girisler) => {
+      girisler.forEach(giris => {
+        if (giris.isIntersecting) {
+          giris.target.classList.add('gorunur');
+          gozlemci.unobserve(giris.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => gozlemci.observe(el));
+
+    dilUygula(mevcutDil(), false);
+    menuGetir();
+    hizmetleriGetir();
+    surecGetir();
+    ortamGetir();
+    degerleriGetir();
+    referanslarGetir();
+    ozelBolumleriGetir();
+    ayarlariGetir();
+  </script>
+</body>
+</html>

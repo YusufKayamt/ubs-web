@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>UBS Danışmanlık | Yönetim Paneli</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Oswald:wght@500;700&display=swap');
+    body { background-color: #0A1628; color: #E4EAF2; margin: 0; }
+    h1, h2 { font-family: 'Oswald', sans-serif; }
+    p, a, span, div, input, button, label, textarea, li { font-family: 'IBM Plex Mono', monospace; }
+    input, textarea { background:#0A1628; border:1px solid #25385A; color:#E4EAF2; }
+    input:focus, textarea:focus { outline:none; border-color:#1B6FC9; }
+  </style>
+</head>
+<body class="p-6 md:p-8 max-w-3xl mx-auto">
+
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-[#1B6FC9] text-2xl md:text-3xl uppercase tracking-wider">Yönetim Paneli</h1>
+    <div class="flex items-center gap-4">
+      <button id="logoutBtn" class="hidden text-xs text-[#6F86AC] hover:text-[#1B6FC9] uppercase">Çıkış Yap</button>
+      <a href="index.html" class="text-xs text-[#6F86AC] hover:text-[#1B6FC9] uppercase">&larr; Siteye Dön</a>
+    </div>
+  </div>
+
+  <!-- GİRİŞ FORMU -->
+  <div id="loginSection" class="bg-[#0F2038] border border-[#25385A] p-6 mb-8">
+    <h2 class="text-xl mb-4 text-[#E4EAF2] uppercase">Yetkili Girişi</h2>
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-xs text-[#6F86AC] uppercase mb-1">Kullanıcı Adı</label>
+        <input type="text" id="username" required autocomplete="username" class="w-full p-3 text-sm">
+      </div>
+      <div>
+        <label class="block text-xs text-[#6F86AC] uppercase mb-1">Şifre</label>
+        <input type="password" id="password" required autocomplete="current-password" class="w-full p-3 text-sm">
+      </div>
+      <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+        Giriş Yap
+      </button>
+    </form>
+    <p id="loginError" class="text-red-400 text-xs mt-3 hidden"></p>
+  </div>
+
+  <!-- PANEL (Başta Gizli) -->
+  <div id="panel" class="hidden">
+
+    <!-- SEKME NAVİGASYONU -->
+    <div class="flex gap-2 mb-6 border-b border-[#25385A] text-xs uppercase overflow-x-auto">
+      <button data-tab="hizmetler" class="tab-btn px-4 py-3 text-[#1B6FC9] border-b-2 border-[#1B6FC9] whitespace-nowrap">Hizmetler</button>
+      <button data-tab="surec" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Süreç</button>
+      <button data-tab="referanslar" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Referanslar</button>
+      <button data-tab="ozelbolum" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Özel Bölümler</button>
+      <button data-tab="menu" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Üst Menü</button>
+      <button data-tab="anasayfa" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Anasayfa</button>
+      <button data-tab="hakkimizda" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Hakkımızda</button>
+      <button data-tab="ayarlar" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">İletişim</button>
+      <button data-tab="mesajlar" class="tab-btn px-4 py-3 text-[#6F86AC] border-b-2 border-transparent whitespace-nowrap">Mesajlar</button>
+    </div>
+
+    <!-- HİZMETLER SEKMESİ -->
+    <section id="tab-hizmetler" class="tab-panel space-y-6">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Yeni Hizmet / Sekme Ekle</h2>
+        <form id="serviceForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Hizmet Adı</label>
+            <input type="text" id="hizmetAdi" required maxlength="255" placeholder="Örn: MIL-STD-810 Çevresel Testler" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (isteğe bağlı)</label>
+            <textarea id="hizmetAciklama" rows="3" maxlength="800" class="w-full p-3 text-sm"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Görsel (isteğe bağlı, JPG/PNG, maks 5MB)</label>
+            <input type="file" id="hizmetGorsel" accept="image/png, image/jpeg" class="w-full p-3 text-sm file:bg-[#1B6FC9] file:text-white file:border-0 file:px-4 file:py-2">
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller (İsteğe Bağlı)</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Hizmet Adı (İngilizce)</label>
+                <input type="text" id="hizmetAdi_en" maxlength="255" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (İngilizce)</label>
+                <textarea id="hizmetAciklama_en" rows="2" maxlength="800" class="w-full p-3 text-sm"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Hizmet Adı (Arapça)</label>
+                <input type="text" id="hizmetAdi_ar" maxlength="255" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (Arapça)</label>
+                <textarea id="hizmetAciklama_ar" rows="2" maxlength="800" dir="rtl" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Sekme Ekle
+          </button>
+        </form>
+        <p id="serviceStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Mevcut Hizmetler</h2>
+        <div id="hizmetListesi" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- SÜREÇ SEKMESİ -->
+    <section id="tab-surec" class="tab-panel hidden space-y-6">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Yeni Süreç Adımı Ekle</h2>
+        <form id="surecForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık</label>
+            <input type="text" id="surecBaslik" required maxlength="100" placeholder="Örn: Test Planı" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama</label>
+            <input type="text" id="surecAciklama" maxlength="300" class="w-full p-3 text-sm">
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller (İsteğe Bağlı)</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (İngilizce)</label>
+                <input type="text" id="surecBaslik_en" maxlength="100" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (İngilizce)</label>
+                <input type="text" id="surecAciklama_en" maxlength="300" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (Arapça)</label>
+                <input type="text" id="surecBaslik_ar" maxlength="100" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (Arapça)</label>
+                <input type="text" id="surecAciklama_ar" maxlength="300" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Ekle
+          </button>
+        </form>
+        <p id="surecStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Mevcut Süreç Adımları</h2>
+        <div id="surecListesi" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- REFERANSLAR SEKMESİ -->
+    <section id="tab-referanslar" class="tab-panel hidden space-y-6">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Yeni Referans Ekle</h2>
+        <form id="referansForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık</label>
+            <input type="text" id="referansBaslik" required maxlength="150" placeholder="Örn: Savunma Sanayii Projesi" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama</label>
+            <textarea id="referansAciklama" rows="3" maxlength="500" class="w-full p-3 text-sm"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Görsel (isteğe bağlı, JPG/PNG, maks 5MB)</label>
+            <input type="file" id="referansGorsel" accept="image/png, image/jpeg" class="w-full p-3 text-sm file:bg-[#1B6FC9] file:text-white file:border-0 file:px-4 file:py-2">
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller (İsteğe Bağlı)</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (İngilizce)</label>
+                <input type="text" id="referansBaslik_en" maxlength="150" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (İngilizce)</label>
+                <textarea id="referansAciklama_en" rows="2" maxlength="500" class="w-full p-3 text-sm"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (Arapça)</label>
+                <input type="text" id="referansBaslik_ar" maxlength="150" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (Arapça)</label>
+                <textarea id="referansAciklama_ar" rows="2" maxlength="500" dir="rtl" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Ekle
+          </button>
+        </form>
+        <p id="referansStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Mevcut Referanslar</h2>
+        <div id="referansListesi" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- ÖZEL BÖLÜMLER SEKMESİ -->
+    <section id="tab-ozelbolum" class="tab-panel hidden space-y-6">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Yeni Bölüm Ekle</h2>
+        <p class="text-xs text-[#6F86AC] mb-4">Burada eklediğin her bölüm, sayfaya kendi başına bir bölüm olarak eklenir ve otomatik olarak üst menüye de bir bağlantı olarak yerleştirilir. Örn: "Ekibimiz", "Sertifikalarımız".</p>
+        <form id="ozelBolumForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (aynı zamanda menüdeki adı olur)</label>
+            <input type="text" id="ozelBolumBaslik" required maxlength="150" placeholder="Örn: Ekibimiz" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama</label>
+            <textarea id="ozelBolumAciklama" rows="4" maxlength="2000" class="w-full p-3 text-sm"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Görsel (isteğe bağlı, JPG/PNG, maks 5MB)</label>
+            <input type="file" id="ozelBolumGorsel" accept="image/png, image/jpeg" class="w-full p-3 text-sm file:bg-[#1B6FC9] file:text-white file:border-0 file:px-4 file:py-2">
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller (İsteğe Bağlı)</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (İngilizce)</label>
+                <input type="text" id="ozelBolumBaslik_en" maxlength="150" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (İngilizce)</label>
+                <textarea id="ozelBolumAciklama_en" rows="2" maxlength="2000" class="w-full p-3 text-sm"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (Arapça)</label>
+                <input type="text" id="ozelBolumBaslik_ar" maxlength="150" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (Arapça)</label>
+                <textarea id="ozelBolumAciklama_ar" rows="2" maxlength="2000" dir="rtl" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Bölümü Oluştur
+          </button>
+        </form>
+        <p id="ozelBolumStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Mevcut Özel Bölümler</h2>
+        <div id="ozelBolumListesi" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- ÜST MENÜ SEKMESİ -->
+    <section id="tab-menu" class="tab-panel hidden space-y-6">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Yeni Menü Öğesi Ekle</h2>
+        <form id="menuForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık</label>
+            <input type="text" id="menuBaslik" required maxlength="100" placeholder="Örn: Referanslar" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Hedef (sayfa içi bağlantı: #hizmetler veya tam adres: https://...)</label>
+            <input type="text" id="menuHedef" required maxlength="255" placeholder="#hizmetler" class="w-full p-3 text-sm">
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller (İsteğe Bağlı)</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (İngilizce)</label>
+                <input type="text" id="menuBaslik_en" maxlength="100" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (Arapça)</label>
+                <input type="text" id="menuBaslik_ar" maxlength="100" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Menüye Ekle
+          </button>
+        </form>
+        <p id="menuStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Mevcut Menü Öğeleri</h2>
+        <div id="menuListesi" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- ANASAYFA SEKMESİ -->
+    <section id="tab-anasayfa" class="tab-panel hidden">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Site Kimliği ve Ana Vitrin (Hero)</h2>
+        <form id="anasayfaForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Site Adı</label>
+            <input type="text" id="site_adi" maxlength="60" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Slogan</label>
+            <input type="text" id="site_slogan" maxlength="100" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Etiketi (küçük üst yazı)</label>
+            <input type="text" id="hero_etiket" maxlength="60" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Başlığı</label>
+            <input type="text" id="hero_baslik" maxlength="150" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Açıklaması</label>
+            <textarea id="hero_aciklama" rows="3" maxlength="400" class="w-full p-3 text-sm"></textarea>
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">İngilizce</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Slogan (İngilizce)</label>
+                <input type="text" id="site_slogan_en" maxlength="100" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Etiketi (İngilizce)</label>
+                <input type="text" id="hero_etiket_en" maxlength="60" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Başlığı (İngilizce)</label>
+                <input type="text" id="hero_baslik_en" maxlength="150" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Açıklaması (İngilizce)</label>
+                <textarea id="hero_aciklama_en" rows="2" maxlength="400" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Arapça</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Slogan (Arapça)</label>
+                <input type="text" id="site_slogan_ar" maxlength="100" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Etiketi (Arapça)</label>
+                <input type="text" id="hero_etiket_ar" maxlength="60" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Başlığı (Arapça)</label>
+                <input type="text" id="hero_baslik_ar" maxlength="150" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Vitrin Açıklaması (Arapça)</label>
+                <textarea id="hero_aciklama_ar" rows="2" maxlength="400" dir="rtl" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Kaydet
+          </button>
+        </form>
+        <p id="anasayfaStatus" class="text-xs mt-3"></p>
+      </div>
+    </section>
+
+    <!-- HAKKIMIZDA SEKMESİ -->
+    <section id="tab-hakkimizda" class="tab-panel hidden space-y-6">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Hakkımızda Metni</h2>
+        <form id="hakkimizdaForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık</label>
+            <input type="text" id="hakkimizda_baslik" maxlength="150" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama</label>
+            <textarea id="hakkimizda_aciklama" rows="3" maxlength="500" class="w-full p-3 text-sm"></textarea>
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">İngilizce</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (İngilizce)</label>
+                <input type="text" id="hakkimizda_baslik_en" maxlength="150" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (İngilizce)</label>
+                <textarea id="hakkimizda_aciklama_en" rows="2" maxlength="500" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Arapça</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (Arapça)</label>
+                <input type="text" id="hakkimizda_baslik_ar" maxlength="150" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (Arapça)</label>
+                <textarea id="hakkimizda_aciklama_ar" rows="2" maxlength="500" dir="rtl" class="w-full p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Kaydet
+          </button>
+        </form>
+        <p id="hakkimizdaStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Yeni Değer Ekle (Örn: Uluslararası Standart Uyumu)</h2>
+        <form id="degerForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık</label>
+            <input type="text" id="degerBaslik" required maxlength="100" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama</label>
+            <input type="text" id="degerAciklama" maxlength="300" class="w-full p-3 text-sm">
+          </div>
+          <details class="border border-[#25385A] p-3">
+            <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller (İsteğe Bağlı)</summary>
+            <div class="space-y-3 mt-3">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (İngilizce)</label>
+                <input type="text" id="degerBaslik_en" maxlength="100" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (İngilizce)</label>
+                <input type="text" id="degerAciklama_en" maxlength="300" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Başlık (Arapça)</label>
+                <input type="text" id="degerBaslik_ar" maxlength="100" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Açıklama (Arapça)</label>
+                <input type="text" id="degerAciklama_ar" maxlength="300" dir="rtl" class="w-full p-3 text-sm">
+              </div>
+            </div>
+          </details>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Ekle
+          </button>
+        </form>
+        <p id="degerStatus" class="text-xs mt-3"></p>
+      </div>
+
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Mevcut Değerler</h2>
+        <div id="degerListesi" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- İLETİŞİM SEKMESİ -->
+    <section id="tab-ayarlar" class="tab-panel hidden">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">İletişim Bilgileri</h2>
+        <form id="settingsForm" class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Telefon 1</label>
+            <input type="text" id="telefon1" maxlength="30" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Telefon 2 (isteğe bağlı)</label>
+            <input type="text" id="telefon2" maxlength="30" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">WhatsApp Numarası (isteğe bağlı, başında ülke kodu: 90...)</label>
+            <input type="text" id="whatsapp" maxlength="30" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Adres</label>
+            <textarea id="adres" rows="2" maxlength="300" class="w-full p-3 text-sm"></textarea>
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Çalışma Saatleri</label>
+            <input type="text" id="calisma_saatleri" maxlength="100" class="w-full p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs text-[#6F86AC] uppercase mb-1">Deneyim Yılı</label>
+            <input type="text" id="deneyim_yili" maxlength="10" class="w-full p-3 text-sm">
+          </div>
+          <button type="submit" class="w-full bg-[#1B6FC9] text-white font-bold py-3 uppercase hover:bg-[#14528F] transition-colors">
+            Kaydet
+          </button>
+        </form>
+        <p id="settingsStatus" class="text-xs mt-3"></p>
+      </div>
+    </section>
+
+    <!-- MESAJLAR SEKMESİ -->
+    <section id="tab-mesajlar" class="tab-panel hidden">
+      <div class="bg-[#0F2038] border border-[#25385A] p-6">
+        <h2 class="text-lg mb-4 text-[#E4EAF2] uppercase">Gelen Mesajlar</h2>
+        <div id="mesajListesi" class="space-y-3"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const API_BASE = '';
+
+    // --- GÜVENLİ RENDER YARDIMCISI (XSS koruması) ---
+    function esc(deger) {
+      return String(deger ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    // --- SEKME GEÇİŞİ ---
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('text-[#1B6FC9]', 'border-[#1B6FC9]'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.add('text-[#6F86AC]', 'border-transparent'));
+        btn.classList.add('text-[#1B6FC9]', 'border-[#1B6FC9]');
+        btn.classList.remove('text-[#6F86AC]', 'border-transparent');
+
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById(`tab-${btn.dataset.tab}`).classList.remove('hidden');
+      });
+    });
+
+    function panelYukle() {
+      document.getElementById('loginSection').classList.add('hidden');
+      document.getElementById('panel').classList.remove('hidden');
+      document.getElementById('logoutBtn').classList.remove('hidden');
+      hizmetleriListele();
+      surecListele();
+      referanslarListele();
+      ozelBolumleriListele();
+      menuListele();
+      degerleriListele();
+      ayarlariYukle();
+      mesajlariListele();
+    }
+
+    // --- GİRİŞ İŞLEMİ ---
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errBox = document.getElementById('loginError');
+      errBox.classList.add('hidden');
+
+      try {
+        const res = await fetch(`${API_BASE}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+          credentials: 'include'
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          panelYukle();
+        } else {
+          errBox.textContent = data.error;
+          errBox.classList.remove('hidden');
+        }
+      } catch (err) {
+        errBox.textContent = "Bağlantı hatası.";
+        errBox.classList.remove('hidden');
+      }
+    });
+
+    // --- ÇIKIŞ İŞLEMİ ---
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      try {
+        await fetch(`${API_BASE}/api/logout`, { method: 'POST', credentials: 'include' });
+      } catch (err) {
+        // yoksay
+      }
+      document.getElementById('panel').classList.add('hidden');
+      document.getElementById('logoutBtn').classList.add('hidden');
+      document.getElementById('loginSection').classList.remove('hidden');
+      document.getElementById('loginForm').reset();
+    });
+
+    // --- HİZMET EKLEME ---
+    document.getElementById('serviceForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('serviceStatus');
+      const formData = new FormData();
+      formData.append('hizmetAdi', document.getElementById('hizmetAdi').value);
+      formData.append('aciklama', document.getElementById('hizmetAciklama').value);
+      formData.append('hizmetAdi_en', document.getElementById('hizmetAdi_en').value);
+      formData.append('aciklama_en', document.getElementById('hizmetAciklama_en').value);
+      formData.append('hizmetAdi_ar', document.getElementById('hizmetAdi_ar').value);
+      formData.append('aciklama_ar', document.getElementById('hizmetAciklama_ar').value);
+      const dosya = document.getElementById('hizmetGorsel').files[0];
+      if (dosya) formData.append('gorsel', dosya);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/services`, {
+          method: 'POST',
+          body: formData,
+          credentials: 'include'
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('serviceForm').reset();
+          hizmetleriListele();
+        }
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- HİZMET LİSTELE / DÜZENLE / SİL ---
+    async function hizmetleriListele() {
+      const kutu = document.getElementById('hizmetListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/services`);
+        const hizmetler = await res.json();
+        if (!Array.isArray(hizmetler) || hizmetler.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz hizmet eklenmemiş.</p>';
+          return;
+        }
+        kutu.innerHTML = hizmetler.map(h => `
+          <div class="border border-[#25385A] p-4" data-id="${h.ID}">
+            <div class="view-mode flex items-start gap-4">
+              ${h.ResimYolu ? `<img src="${esc(h.ResimYolu)}" class="w-16 h-16 object-cover shrink-0">` : ''}
+              <div class="flex-1 flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm text-[#E4EAF2]">${esc(h.HizmetAdi)}</p>
+                  <p class="text-xs text-[#6F86AC] mt-1">${esc(h.Aciklama)}</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <button class="edit-btn text-xs text-[#1B6FC9] hover:underline uppercase">Düzenle</button>
+                  <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+                </div>
+              </div>
+            </div>
+            <div class="edit-mode hidden space-y-2 mt-3">
+              <input type="text" class="edit-ad w-full p-2 text-sm" maxlength="255" value="${esc(h.HizmetAdi)}">
+              <textarea class="edit-aciklama w-full p-2 text-sm" rows="3" maxlength="800">${esc(h.Aciklama)}</textarea>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Yeni Görsel (isteğe bağlı, boş bırakılırsa mevcut kalır)</label>
+                <input type="file" class="edit-gorsel w-full p-2 text-sm" accept="image/png, image/jpeg">
+              </div>
+              <details class="border border-[#25385A] p-3">
+                <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller</summary>
+                <div class="space-y-2 mt-3">
+                  <input type="text" class="edit-ad-en w-full p-2 text-sm" placeholder="Hizmet Adı (İngilizce)" maxlength="255" value="${esc(h.HizmetAdi_en)}">
+                  <textarea class="edit-aciklama-en w-full p-2 text-sm" rows="2" placeholder="Açıklama (İngilizce)" maxlength="800">${esc(h.Aciklama_en)}</textarea>
+                  <input type="text" class="edit-ad-ar w-full p-2 text-sm" dir="rtl" placeholder="Hizmet Adı (Arapça)" maxlength="255" value="${esc(h.HizmetAdi_ar)}">
+                  <textarea class="edit-aciklama-ar w-full p-2 text-sm" dir="rtl" rows="2" placeholder="Açıklama (Arapça)" maxlength="800">${esc(h.Aciklama_ar)}</textarea>
+                </div>
+              </details>
+              <div class="flex gap-2">
+                <button class="save-btn text-xs bg-[#1B6FC9] text-white font-bold px-3 py-2 uppercase">Kaydet</button>
+                <button class="cancel-btn text-xs border border-[#25385A] px-3 py-2 uppercase">Vazgeç</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const viewMode = kart.querySelector('.view-mode');
+          const editMode = kart.querySelector('.edit-mode');
+
+          kart.querySelector('.edit-btn').addEventListener('click', () => {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+          });
+          kart.querySelector('.cancel-btn').addEventListener('click', () => {
+            editMode.classList.add('hidden');
+            viewMode.classList.remove('hidden');
+          });
+          kart.querySelector('.save-btn').addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('hizmetAdi', kart.querySelector('.edit-ad').value);
+            formData.append('aciklama', kart.querySelector('.edit-aciklama').value);
+            formData.append('hizmetAdi_en', kart.querySelector('.edit-ad-en').value);
+            formData.append('aciklama_en', kart.querySelector('.edit-aciklama-en').value);
+            formData.append('hizmetAdi_ar', kart.querySelector('.edit-ad-ar').value);
+            formData.append('aciklama_ar', kart.querySelector('.edit-aciklama-ar').value);
+            const dosya = kart.querySelector('.edit-gorsel').files[0];
+            if (dosya) formData.append('gorsel', dosya);
+            try {
+              const res = await fetch(`${API_BASE}/api/services/${id}`, {
+                method: 'PUT',
+                body: formData,
+                credentials: 'include'
+              });
+              if (res.ok) hizmetleriListele();
+              else alert('Güncelleme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu hizmeti silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/services/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+              });
+              if (res.ok) hizmetleriListele();
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Hizmetler yüklenemedi.</p>';
+      }
+    }
+
+    // --- MENÜ ÖĞESİ EKLEME ---
+    document.getElementById('menuForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('menuStatus');
+      const baslik = document.getElementById('menuBaslik').value;
+      const hedef = document.getElementById('menuHedef').value;
+      const baslik_en = document.getElementById('menuBaslik_en').value;
+      const baslik_ar = document.getElementById('menuBaslik_ar').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/menu`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ baslik, hedef, baslik_en, baslik_ar }),
+          credentials: 'include'
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('menuForm').reset();
+          menuListele();
+        }
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- MENÜ LİSTELE / DÜZENLE / SİL ---
+    async function menuListele() {
+      const kutu = document.getElementById('menuListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/menu`);
+        const ogeler = await res.json();
+        if (!Array.isArray(ogeler) || ogeler.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz menü öğesi eklenmemiş.</p>';
+          return;
+        }
+        kutu.innerHTML = ogeler.map(o => `
+          <div class="border border-[#25385A] p-4" data-id="${o.ID}">
+            <div class="view-mode">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm text-[#E4EAF2]">${esc(o.Baslik)}</p>
+                  <p class="text-xs text-[#6F86AC] mt-1">${esc(o.Hedef)} &middot; sıra: ${esc(o.Sira)}</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <button class="edit-btn text-xs text-[#1B6FC9] hover:underline uppercase">Düzenle</button>
+                  <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+                </div>
+              </div>
+            </div>
+            <div class="edit-mode hidden space-y-2">
+              <input type="text" class="edit-baslik w-full p-2 text-sm" maxlength="100" value="${esc(o.Baslik)}">
+              <input type="text" class="edit-hedef w-full p-2 text-sm" maxlength="255" value="${esc(o.Hedef)}">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Sıra</label>
+                <input type="number" class="edit-sira w-full p-2 text-sm" value="${esc(o.Sira)}">
+              </div>
+              <details class="border border-[#25385A] p-3">
+                <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller</summary>
+                <div class="space-y-2 mt-3">
+                  <input type="text" class="edit-baslik-en w-full p-2 text-sm" placeholder="Başlık (İngilizce)" maxlength="100" value="${esc(o.Baslik_en)}">
+                  <input type="text" class="edit-baslik-ar w-full p-2 text-sm" dir="rtl" placeholder="Başlık (Arapça)" maxlength="100" value="${esc(o.Baslik_ar)}">
+                </div>
+              </details>
+              <div class="flex gap-2">
+                <button class="save-btn text-xs bg-[#1B6FC9] text-white font-bold px-3 py-2 uppercase">Kaydet</button>
+                <button class="cancel-btn text-xs border border-[#25385A] px-3 py-2 uppercase">Vazgeç</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const viewMode = kart.querySelector('.view-mode');
+          const editMode = kart.querySelector('.edit-mode');
+
+          kart.querySelector('.edit-btn').addEventListener('click', () => {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+          });
+          kart.querySelector('.cancel-btn').addEventListener('click', () => {
+            editMode.classList.add('hidden');
+            viewMode.classList.remove('hidden');
+          });
+          kart.querySelector('.save-btn').addEventListener('click', async () => {
+            const baslik = kart.querySelector('.edit-baslik').value;
+            const hedef = kart.querySelector('.edit-hedef').value;
+            const sira = kart.querySelector('.edit-sira').value;
+            const baslik_en = kart.querySelector('.edit-baslik-en').value;
+            const baslik_ar = kart.querySelector('.edit-baslik-ar').value;
+            try {
+              const res = await fetch(`${API_BASE}/api/menu/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ baslik, hedef, sira, baslik_en, baslik_ar }),
+                credentials: 'include'
+              });
+              const data = await res.json();
+              if (res.ok) menuListele();
+              else alert(data.error || 'Güncelleme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu menü öğesini silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/menu/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+              });
+              if (res.ok) menuListele();
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Menü yüklenemedi.</p>';
+      }
+    }
+
+    // --- DEĞER EKLEME ---
+    document.getElementById('degerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('degerStatus');
+      const baslik = document.getElementById('degerBaslik').value;
+      const aciklama = document.getElementById('degerAciklama').value;
+      const baslik_en = document.getElementById('degerBaslik_en').value;
+      const aciklama_en = document.getElementById('degerAciklama_en').value;
+      const baslik_ar = document.getElementById('degerBaslik_ar').value;
+      const aciklama_ar = document.getElementById('degerAciklama_ar').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/degerler`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ baslik, aciklama, baslik_en, aciklama_en, baslik_ar, aciklama_ar }),
+          credentials: 'include'
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('degerForm').reset();
+          degerleriListele();
+        }
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- DEĞER LİSTELE / DÜZENLE / SİL ---
+    async function degerleriListele() {
+      const kutu = document.getElementById('degerListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/degerler`);
+        const degerler = await res.json();
+        if (!Array.isArray(degerler) || degerler.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz değer eklenmemiş.</p>';
+          return;
+        }
+        kutu.innerHTML = degerler.map(d => `
+          <div class="border border-[#25385A] p-4" data-id="${d.ID}">
+            <div class="view-mode">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm text-[#E4EAF2]">${esc(d.Baslik)}</p>
+                  <p class="text-xs text-[#6F86AC] mt-1">${esc(d.Aciklama)}</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <button class="edit-btn text-xs text-[#1B6FC9] hover:underline uppercase">Düzenle</button>
+                  <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+                </div>
+              </div>
+            </div>
+            <div class="edit-mode hidden space-y-2">
+              <input type="text" class="edit-baslik w-full p-2 text-sm" maxlength="100" value="${esc(d.Baslik)}">
+              <input type="text" class="edit-aciklama w-full p-2 text-sm" maxlength="300" value="${esc(d.Aciklama)}">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Sıra</label>
+                <input type="number" class="edit-sira w-full p-2 text-sm" value="${esc(d.Sira)}">
+              </div>
+              <details class="border border-[#25385A] p-3">
+                <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller</summary>
+                <div class="space-y-2 mt-3">
+                  <input type="text" class="edit-baslik-en w-full p-2 text-sm" placeholder="Başlık (İngilizce)" maxlength="100" value="${esc(d.Baslik_en)}">
+                  <input type="text" class="edit-aciklama-en w-full p-2 text-sm" placeholder="Açıklama (İngilizce)" maxlength="300" value="${esc(d.Aciklama_en)}">
+                  <input type="text" class="edit-baslik-ar w-full p-2 text-sm" dir="rtl" placeholder="Başlık (Arapça)" maxlength="100" value="${esc(d.Baslik_ar)}">
+                  <input type="text" class="edit-aciklama-ar w-full p-2 text-sm" dir="rtl" placeholder="Açıklama (Arapça)" maxlength="300" value="${esc(d.Aciklama_ar)}">
+                </div>
+              </details>
+              <div class="flex gap-2">
+                <button class="save-btn text-xs bg-[#1B6FC9] text-white font-bold px-3 py-2 uppercase">Kaydet</button>
+                <button class="cancel-btn text-xs border border-[#25385A] px-3 py-2 uppercase">Vazgeç</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const viewMode = kart.querySelector('.view-mode');
+          const editMode = kart.querySelector('.edit-mode');
+
+          kart.querySelector('.edit-btn').addEventListener('click', () => {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+          });
+          kart.querySelector('.cancel-btn').addEventListener('click', () => {
+            editMode.classList.add('hidden');
+            viewMode.classList.remove('hidden');
+          });
+          kart.querySelector('.save-btn').addEventListener('click', async () => {
+            const baslik = kart.querySelector('.edit-baslik').value;
+            const aciklama = kart.querySelector('.edit-aciklama').value;
+            const sira = kart.querySelector('.edit-sira').value;
+            const baslik_en = kart.querySelector('.edit-baslik-en').value;
+            const aciklama_en = kart.querySelector('.edit-aciklama-en').value;
+            const baslik_ar = kart.querySelector('.edit-baslik-ar').value;
+            const aciklama_ar = kart.querySelector('.edit-aciklama-ar').value;
+            try {
+              const res = await fetch(`${API_BASE}/api/degerler/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ baslik, aciklama, sira, baslik_en, aciklama_en, baslik_ar, aciklama_ar }),
+                credentials: 'include'
+              });
+              if (res.ok) degerleriListele();
+              else alert('Güncelleme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu değeri silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/degerler/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+              });
+              if (res.ok) degerleriListele();
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Değerler yüklenemedi.</p>';
+      }
+    }
+
+    // --- SÜREÇ ADIMI EKLEME ---
+    document.getElementById('surecForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('surecStatus');
+      const baslik = document.getElementById('surecBaslik').value;
+      const aciklama = document.getElementById('surecAciklama').value;
+      const baslik_en = document.getElementById('surecBaslik_en').value;
+      const aciklama_en = document.getElementById('surecAciklama_en').value;
+      const baslik_ar = document.getElementById('surecBaslik_ar').value;
+      const aciklama_ar = document.getElementById('surecAciklama_ar').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/surec`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ baslik, aciklama, baslik_en, aciklama_en, baslik_ar, aciklama_ar }),
+          credentials: 'include'
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('surecForm').reset();
+          surecListele();
+        }
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- SÜREÇ LİSTELE / DÜZENLE / SİL ---
+    async function surecListele() {
+      const kutu = document.getElementById('surecListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/surec`);
+        const adimlar = await res.json();
+        if (!Array.isArray(adimlar) || adimlar.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz süreç adımı eklenmemiş.</p>';
+          return;
+        }
+        kutu.innerHTML = adimlar.map(s => `
+          <div class="border border-[#25385A] p-4" data-id="${s.ID}">
+            <div class="view-mode">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm text-[#E4EAF2]">${esc(s.Baslik)}</p>
+                  <p class="text-xs text-[#6F86AC] mt-1">${esc(s.Aciklama)}</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <button class="edit-btn text-xs text-[#1B6FC9] hover:underline uppercase">Düzenle</button>
+                  <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+                </div>
+              </div>
+            </div>
+            <div class="edit-mode hidden space-y-2">
+              <input type="text" class="edit-baslik w-full p-2 text-sm" maxlength="100" value="${esc(s.Baslik)}">
+              <input type="text" class="edit-aciklama w-full p-2 text-sm" maxlength="300" value="${esc(s.Aciklama)}">
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Sıra</label>
+                <input type="number" class="edit-sira w-full p-2 text-sm" value="${esc(s.Sira)}">
+              </div>
+              <details class="border border-[#25385A] p-3">
+                <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller</summary>
+                <div class="space-y-2 mt-3">
+                  <input type="text" class="edit-baslik-en w-full p-2 text-sm" placeholder="Başlık (İngilizce)" maxlength="100" value="${esc(s.Baslik_en)}">
+                  <input type="text" class="edit-aciklama-en w-full p-2 text-sm" placeholder="Açıklama (İngilizce)" maxlength="300" value="${esc(s.Aciklama_en)}">
+                  <input type="text" class="edit-baslik-ar w-full p-2 text-sm" dir="rtl" placeholder="Başlık (Arapça)" maxlength="100" value="${esc(s.Baslik_ar)}">
+                  <input type="text" class="edit-aciklama-ar w-full p-2 text-sm" dir="rtl" placeholder="Açıklama (Arapça)" maxlength="300" value="${esc(s.Aciklama_ar)}">
+                </div>
+              </details>
+              <div class="flex gap-2">
+                <button class="save-btn text-xs bg-[#1B6FC9] text-white font-bold px-3 py-2 uppercase">Kaydet</button>
+                <button class="cancel-btn text-xs border border-[#25385A] px-3 py-2 uppercase">Vazgeç</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const viewMode = kart.querySelector('.view-mode');
+          const editMode = kart.querySelector('.edit-mode');
+
+          kart.querySelector('.edit-btn').addEventListener('click', () => {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+          });
+          kart.querySelector('.cancel-btn').addEventListener('click', () => {
+            editMode.classList.add('hidden');
+            viewMode.classList.remove('hidden');
+          });
+          kart.querySelector('.save-btn').addEventListener('click', async () => {
+            const baslik = kart.querySelector('.edit-baslik').value;
+            const aciklama = kart.querySelector('.edit-aciklama').value;
+            const sira = kart.querySelector('.edit-sira').value;
+            const baslik_en = kart.querySelector('.edit-baslik-en').value;
+            const aciklama_en = kart.querySelector('.edit-aciklama-en').value;
+            const baslik_ar = kart.querySelector('.edit-baslik-ar').value;
+            const aciklama_ar = kart.querySelector('.edit-aciklama-ar').value;
+            try {
+              const res = await fetch(`${API_BASE}/api/surec/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ baslik, aciklama, sira, baslik_en, aciklama_en, baslik_ar, aciklama_ar }),
+                credentials: 'include'
+              });
+              if (res.ok) surecListele();
+              else alert('Güncelleme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu süreç adımını silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/surec/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+              });
+              if (res.ok) surecListele();
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Süreç adımları yüklenemedi.</p>';
+      }
+    }
+
+    // --- REFERANS EKLEME ---
+    document.getElementById('referansForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('referansStatus');
+      const formData = new FormData();
+      formData.append('baslik', document.getElementById('referansBaslik').value);
+      formData.append('aciklama', document.getElementById('referansAciklama').value);
+      formData.append('baslik_en', document.getElementById('referansBaslik_en').value);
+      formData.append('aciklama_en', document.getElementById('referansAciklama_en').value);
+      formData.append('baslik_ar', document.getElementById('referansBaslik_ar').value);
+      formData.append('aciklama_ar', document.getElementById('referansAciklama_ar').value);
+      const dosya = document.getElementById('referansGorsel').files[0];
+      if (dosya) formData.append('gorsel', dosya);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/referanslar`, {
+          method: 'POST',
+          body: formData,
+          credentials: 'include'
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('referansForm').reset();
+          referanslarListele();
+        }
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- REFERANS LİSTELE / DÜZENLE / SİL ---
+    async function referanslarListele() {
+      const kutu = document.getElementById('referansListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/referanslar`);
+        const referanslar = await res.json();
+        if (!Array.isArray(referanslar) || referanslar.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz referans eklenmemiş.</p>';
+          return;
+        }
+        kutu.innerHTML = referanslar.map(r => `
+          <div class="border border-[#25385A] p-4" data-id="${r.ID}">
+            <div class="view-mode flex items-start gap-4">
+              ${r.ResimYolu ? `<img src="${esc(r.ResimYolu)}" class="w-16 h-16 object-cover shrink-0">` : ''}
+              <div class="flex-1 flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm text-[#E4EAF2]">${esc(r.Baslik)}</p>
+                  <p class="text-xs text-[#6F86AC] mt-1">${esc(r.Aciklama)}</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <button class="edit-btn text-xs text-[#1B6FC9] hover:underline uppercase">Düzenle</button>
+                  <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+                </div>
+              </div>
+            </div>
+            <div class="edit-mode hidden space-y-2 mt-3">
+              <input type="text" class="edit-baslik w-full p-2 text-sm" maxlength="150" value="${esc(r.Baslik)}">
+              <textarea class="edit-aciklama w-full p-2 text-sm" rows="2" maxlength="500">${esc(r.Aciklama)}</textarea>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Sıra</label>
+                <input type="number" class="edit-sira w-full p-2 text-sm" value="${esc(r.Sira)}">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Yeni Görsel (isteğe bağlı, boş bırakılırsa mevcut kalır)</label>
+                <input type="file" class="edit-gorsel w-full p-2 text-sm" accept="image/png, image/jpeg">
+              </div>
+              <details class="border border-[#25385A] p-3">
+                <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller</summary>
+                <div class="space-y-2 mt-3">
+                  <input type="text" class="edit-baslik-en w-full p-2 text-sm" placeholder="Başlık (İngilizce)" maxlength="150" value="${esc(r.Baslik_en)}">
+                  <textarea class="edit-aciklama-en w-full p-2 text-sm" rows="2" placeholder="Açıklama (İngilizce)" maxlength="500">${esc(r.Aciklama_en)}</textarea>
+                  <input type="text" class="edit-baslik-ar w-full p-2 text-sm" dir="rtl" placeholder="Başlık (Arapça)" maxlength="150" value="${esc(r.Baslik_ar)}">
+                  <textarea class="edit-aciklama-ar w-full p-2 text-sm" dir="rtl" rows="2" placeholder="Açıklama (Arapça)" maxlength="500">${esc(r.Aciklama_ar)}</textarea>
+                </div>
+              </details>
+              <div class="flex gap-2">
+                <button class="save-btn text-xs bg-[#1B6FC9] text-white font-bold px-3 py-2 uppercase">Kaydet</button>
+                <button class="cancel-btn text-xs border border-[#25385A] px-3 py-2 uppercase">Vazgeç</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const viewMode = kart.querySelector('.view-mode');
+          const editMode = kart.querySelector('.edit-mode');
+
+          kart.querySelector('.edit-btn').addEventListener('click', () => {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+          });
+          kart.querySelector('.cancel-btn').addEventListener('click', () => {
+            editMode.classList.add('hidden');
+            viewMode.classList.remove('hidden');
+          });
+          kart.querySelector('.save-btn').addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('baslik', kart.querySelector('.edit-baslik').value);
+            formData.append('aciklama', kart.querySelector('.edit-aciklama').value);
+            formData.append('sira', kart.querySelector('.edit-sira').value);
+            formData.append('baslik_en', kart.querySelector('.edit-baslik-en').value);
+            formData.append('aciklama_en', kart.querySelector('.edit-aciklama-en').value);
+            formData.append('baslik_ar', kart.querySelector('.edit-baslik-ar').value);
+            formData.append('aciklama_ar', kart.querySelector('.edit-aciklama-ar').value);
+            const dosya = kart.querySelector('.edit-gorsel').files[0];
+            if (dosya) formData.append('gorsel', dosya);
+            try {
+              const res = await fetch(`${API_BASE}/api/referanslar/${id}`, {
+                method: 'PUT',
+                body: formData,
+                credentials: 'include'
+              });
+              if (res.ok) referanslarListele();
+              else alert('Güncelleme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu referansı silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/referanslar/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+              });
+              if (res.ok) referanslarListele();
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Referanslar yüklenemedi.</p>';
+      }
+    }
+
+    // --- ÖZEL BÖLÜM EKLEME ---
+    document.getElementById('ozelBolumForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusBox = document.getElementById('ozelBolumStatus');
+      const formData = new FormData();
+      formData.append('baslik', document.getElementById('ozelBolumBaslik').value);
+      formData.append('aciklama', document.getElementById('ozelBolumAciklama').value);
+      formData.append('baslik_en', document.getElementById('ozelBolumBaslik_en').value);
+      formData.append('aciklama_en', document.getElementById('ozelBolumAciklama_en').value);
+      formData.append('baslik_ar', document.getElementById('ozelBolumBaslik_ar').value);
+      formData.append('aciklama_ar', document.getElementById('ozelBolumAciklama_ar').value);
+      const dosya = document.getElementById('ozelBolumGorsel').files[0];
+      if (dosya) formData.append('gorsel', dosya);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/ozel-bolumler`, {
+          method: 'POST',
+          body: formData,
+          credentials: 'include'
+        });
+        const data = await res.json();
+        statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+        statusBox.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('ozelBolumForm').reset();
+          ozelBolumleriListele();
+          menuListele();
+        }
+      } catch (err) {
+        statusBox.style.color = '#f87171';
+        statusBox.textContent = "Bağlantı hatası.";
+      }
+    });
+
+    // --- ÖZEL BÖLÜM LİSTELE / DÜZENLE / SİL ---
+    async function ozelBolumleriListele() {
+      const kutu = document.getElementById('ozelBolumListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/ozel-bolumler`);
+        const bolumler = await res.json();
+        if (!Array.isArray(bolumler) || bolumler.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz özel bölüm eklenmemiş.</p>';
+          return;
+        }
+        kutu.innerHTML = bolumler.map(b => `
+          <div class="border border-[#25385A] p-4" data-id="${b.ID}">
+            <div class="view-mode flex items-start gap-4">
+              ${b.ResimYolu ? `<img src="${esc(b.ResimYolu)}" class="w-16 h-16 object-cover shrink-0">` : ''}
+              <div class="flex-1 flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm text-[#E4EAF2]">${esc(b.Baslik)}</p>
+                  <p class="text-xs text-[#6F86AC] mt-1">#${esc(b.Slug)} &middot; ${esc(b.Aciklama)}</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <button class="edit-btn text-xs text-[#1B6FC9] hover:underline uppercase">Düzenle</button>
+                  <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+                </div>
+              </div>
+            </div>
+            <div class="edit-mode hidden space-y-2 mt-3">
+              <input type="text" class="edit-baslik w-full p-2 text-sm" maxlength="150" value="${esc(b.Baslik)}">
+              <textarea class="edit-aciklama w-full p-2 text-sm" rows="3" maxlength="2000">${esc(b.Aciklama)}</textarea>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Sıra</label>
+                <input type="number" class="edit-sira w-full p-2 text-sm" value="${esc(b.Sira)}">
+              </div>
+              <div>
+                <label class="block text-xs text-[#6F86AC] uppercase mb-1">Yeni Görsel (isteğe bağlı, boş bırakılırsa mevcut kalır)</label>
+                <input type="file" class="edit-gorsel w-full p-2 text-sm" accept="image/png, image/jpeg">
+              </div>
+              <details class="border border-[#25385A] p-3">
+                <summary class="text-xs text-[#6F86AC] uppercase cursor-pointer">Diğer Diller</summary>
+                <div class="space-y-2 mt-3">
+                  <input type="text" class="edit-baslik-en w-full p-2 text-sm" placeholder="Başlık (İngilizce)" maxlength="150" value="${esc(b.Baslik_en)}">
+                  <textarea class="edit-aciklama-en w-full p-2 text-sm" rows="2" placeholder="Açıklama (İngilizce)" maxlength="2000">${esc(b.Aciklama_en)}</textarea>
+                  <input type="text" class="edit-baslik-ar w-full p-2 text-sm" dir="rtl" placeholder="Başlık (Arapça)" maxlength="150" value="${esc(b.Baslik_ar)}">
+                  <textarea class="edit-aciklama-ar w-full p-2 text-sm" dir="rtl" rows="2" placeholder="Açıklama (Arapça)" maxlength="2000">${esc(b.Aciklama_ar)}</textarea>
+                </div>
+              </details>
+              <div class="flex gap-2">
+                <button class="save-btn text-xs bg-[#1B6FC9] text-white font-bold px-3 py-2 uppercase">Kaydet</button>
+                <button class="cancel-btn text-xs border border-[#25385A] px-3 py-2 uppercase">Vazgeç</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const viewMode = kart.querySelector('.view-mode');
+          const editMode = kart.querySelector('.edit-mode');
+
+          kart.querySelector('.edit-btn').addEventListener('click', () => {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+          });
+          kart.querySelector('.cancel-btn').addEventListener('click', () => {
+            editMode.classList.add('hidden');
+            viewMode.classList.remove('hidden');
+          });
+          kart.querySelector('.save-btn').addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('baslik', kart.querySelector('.edit-baslik').value);
+            formData.append('aciklama', kart.querySelector('.edit-aciklama').value);
+            formData.append('sira', kart.querySelector('.edit-sira').value);
+            formData.append('baslik_en', kart.querySelector('.edit-baslik-en').value);
+            formData.append('aciklama_en', kart.querySelector('.edit-aciklama-en').value);
+            formData.append('baslik_ar', kart.querySelector('.edit-baslik-ar').value);
+            formData.append('aciklama_ar', kart.querySelector('.edit-aciklama-ar').value);
+            const dosya = kart.querySelector('.edit-gorsel').files[0];
+            if (dosya) formData.append('gorsel', dosya);
+            try {
+              const res = await fetch(`${API_BASE}/api/ozel-bolumler/${id}`, {
+                method: 'PUT',
+                body: formData,
+                credentials: 'include'
+              });
+              if (res.ok) { ozelBolumleriListele(); menuListele(); }
+              else alert('Güncelleme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu bölümü ve buna bağlı üst menü öğesini silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/ozel-bolumler/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+              });
+              if (res.ok) { ozelBolumleriListele(); menuListele(); }
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Özel bölümler yüklenemedi.</p>';
+      }
+    }
+
+    // --- GELEN MESAJLAR ---
+    async function mesajlariListele() {
+      const kutu = document.getElementById('mesajListesi');
+      kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Yükleniyor...</p>';
+      try {
+        const res = await fetch(`${API_BASE}/api/contact`, { credentials: 'include' });
+        if (res.status === 401) { kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Görmek için giriş yapın.</p>'; return; }
+        const mesajlar = await res.json();
+        if (!Array.isArray(mesajlar) || mesajlar.length === 0) {
+          kutu.innerHTML = '<p class="text-xs text-[#6F86AC]">Henüz mesaj yok.</p>';
+          return;
+        }
+        kutu.innerHTML = mesajlar.map(m => {
+          const tarih = m.Tarih ? new Date(m.Tarih).toLocaleString('tr-TR') : '';
+          return `
+          <div class="border ${m.Okundu ? 'border-[#25385A]' : 'border-[#1B6FC9]'} p-4" data-id="${m.ID}">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <p class="text-sm text-[#E4EAF2]">${esc(m.Ad)}${m.Firma ? ' &middot; ' + esc(m.Firma) : ''}</p>
+                <p class="text-xs text-[#1B6FC9]">${esc(m.Eposta)}</p>
+                <p class="text-[10px] text-[#6F86AC] mt-1">${esc(tarih)}${m.Okundu ? '' : ' &middot; YENİ'}</p>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                ${m.Okundu ? '' : '<button class="okundu-btn text-xs text-[#1B6FC9] hover:underline uppercase">Okundu İşaretle</button>'}
+                <button class="delete-btn text-xs text-red-400 hover:underline uppercase">Sil</button>
+              </div>
+            </div>
+            <p class="text-xs text-[#E4EAF2] leading-relaxed whitespace-pre-wrap">${esc(m.Mesaj)}</p>
+          </div>
+        `; }).join('');
+
+        kutu.querySelectorAll('[data-id]').forEach(kart => {
+          const id = kart.dataset.id;
+          const okunduBtn = kart.querySelector('.okundu-btn');
+          if (okunduBtn) okunduBtn.addEventListener('click', async () => {
+            try {
+              const res = await fetch(`${API_BASE}/api/contact/${id}/okundu`, { method: 'PUT', credentials: 'include' });
+              if (res.ok) mesajlariListele();
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+          kart.querySelector('.delete-btn').addEventListener('click', async () => {
+            if (!confirm('Bu mesajı silmek istediğinize emin misiniz?')) return;
+            try {
+              const res = await fetch(`${API_BASE}/api/contact/${id}`, { method: 'DELETE', credentials: 'include' });
+              if (res.ok) mesajlariListele();
+              else alert('Silme başarısız.');
+            } catch (err) {
+              alert('Bağlantı hatası.');
+            }
+          });
+        });
+      } catch (err) {
+        kutu.innerHTML = '<p class="text-xs text-red-400">Mesajlar yüklenemedi.</p>';
+      }
+    }
+
+    // --- SİTE AYARLARI (Anasayfa, Hakkımızda, İletişim) ---
+    const AYAR_ALANLARI = ['telefon1', 'telefon2', 'whatsapp', 'adres', 'calisma_saatleri', 'deneyim_yili',
+      'site_adi', 'site_slogan', 'hero_etiket', 'hero_baslik', 'hero_aciklama', 'hakkimizda_baslik', 'hakkimizda_aciklama',
+      'site_slogan_en', 'hero_etiket_en', 'hero_baslik_en', 'hero_aciklama_en', 'hakkimizda_baslik_en', 'hakkimizda_aciklama_en',
+      'site_slogan_ar', 'hero_etiket_ar', 'hero_baslik_ar', 'hero_aciklama_ar', 'hakkimizda_baslik_ar', 'hakkimizda_aciklama_ar'];
+
+    async function ayarlariYukle() {
+      try {
+        const res = await fetch(`${API_BASE}/api/settings`);
+        const a = await res.json();
+        AYAR_ALANLARI.forEach(anahtar => {
+          const el = document.getElementById(anahtar);
+          if (el && a[anahtar] !== undefined) el.value = a[anahtar];
+        });
+      } catch (err) {
+        // sessizce geç
+      }
+    }
+
+    function ayarKaydetFormu(formId, statusId, alanlar) {
+      document.getElementById(formId).addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const statusBox = document.getElementById(statusId);
+        const govde = {};
+        alanlar.forEach(anahtar => { govde[anahtar] = document.getElementById(anahtar).value; });
+
+        try {
+          const res = await fetch(`${API_BASE}/api/settings`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(govde),
+            credentials: 'include'
+          });
+          const data = await res.json();
+          statusBox.style.color = res.ok ? '#4ade80' : '#f87171';
+          statusBox.textContent = data.message || data.error;
+        } catch (err) {
+          statusBox.style.color = '#f87171';
+          statusBox.textContent = "Bağlantı hatası.";
+        }
+      });
+    }
+
+    ayarKaydetFormu('anasayfaForm', 'anasayfaStatus', ['site_adi', 'site_slogan', 'hero_etiket', 'hero_baslik', 'hero_aciklama',
+      'site_slogan_en', 'hero_etiket_en', 'hero_baslik_en', 'hero_aciklama_en',
+      'site_slogan_ar', 'hero_etiket_ar', 'hero_baslik_ar', 'hero_aciklama_ar']);
+    ayarKaydetFormu('hakkimizdaForm', 'hakkimizdaStatus', ['hakkimizda_baslik', 'hakkimizda_aciklama', 'hakkimizda_baslik_en', 'hakkimizda_aciklama_en', 'hakkimizda_baslik_ar', 'hakkimizda_aciklama_ar']);
+    ayarKaydetFormu('settingsForm', 'settingsStatus', ['telefon1', 'telefon2', 'whatsapp', 'adres', 'calisma_saatleri', 'deneyim_yili']);
+  </script>
+</body>
+</html>

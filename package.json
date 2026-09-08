@@ -1,0 +1,25 @@
+{
+  "name": "ubs-danismanlik-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UBS Danışmanlık - Savunma Sanayii Test Danışmanlığı sitesi (Vercel + Supabase)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node api/index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.3.0",
+    "pg": "^8.13.1"
+  }
+}
