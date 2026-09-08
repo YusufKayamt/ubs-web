@@ -1,4 +1,4 @@
--- Supabase SQL Editor'da çalıştır. Güvenle tekrar çalıştırılabilir.
+-- Neon SQL Editor'da (veya psql ile) çalıştır. Güvenle tekrar çalıştırılabilir.
 
 DROP TABLE IF EXISTS Hizmetler CASCADE;
 DROP TABLE IF EXISTS Menu CASCADE;
